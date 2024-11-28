@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Submission Result</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Submission Result</h1>
+        <div id="result"></div>
+        <button onclick="goBack()">Go Back</button>
+    </div>
+    <script>
+        // Extract URL parameters and display the result
+        const params = new URLSearchParams(window.location.search);
+        const name = params.get('name');
+        const email = params.get('email');
+        const phone = params.get('phone');
+        const address = params.get('address');
+
+        if (name && email && phone && address) {
+            document.getElementById('result').innerHTML = `
+                <p><strong>Name:</strong> ${name}</p>
+                <p><strong>Email:</strong> ${email}</p>
+                <p><strong>Phone:</strong> ${phone}</p>
+                <p><strong>Address:</strong> ${address}</p>
+            `;
+        } else {
+            document.getElementById('result').innerHTML = '<p>Error: Missing data!</p>';
+        }
+
+        // Go back to the form page
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>
